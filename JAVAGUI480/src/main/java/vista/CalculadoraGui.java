@@ -34,7 +34,7 @@ public class CalculadoraGui extends javax.swing.JFrame {
         txtnota2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnEvaluar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        lblResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,8 +51,13 @@ public class CalculadoraGui extends javax.swing.JFrame {
         jLabel3.setText("Escriba la nota de matematicas");
 
         btnEvaluar.setText("Evaluar");
+        btnEvaluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEvaluarActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblResultado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,7 +67,7 @@ public class CalculadoraGui extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 49, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -95,7 +100,7 @@ public class CalculadoraGui extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtnota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -120,6 +125,30 @@ public class CalculadoraGui extends javax.swing.JFrame {
     private void txtnota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnota1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnota1ActionPerformed
+
+    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
+        // TODO add your handling code here:
+        try{
+                //capturar datos
+                String nombre =txtnombre.getText().trim();
+                double nota1= Double.parseDouble(txtnota1.getText());
+                double nota2= Double.parseDouble(txtnota2.getText());
+
+                
+                //instanciar al objeto
+                
+                modelo.Estudiante estudiante = new modelo.Estudiante (nombre,nota1,nota2);
+                
+                //pedirle al objeto que trabaje y actualice la interfaz
+                
+                String mensaje = String.format("Estudiante %s | Definitiva: %.2f(%s) ",estudiante.getNombre(),estudiante.calcularDefinitiva(),estudiante.calcularDefinitiva());
+                lblResultado.setText(mensaje);
+        }
+            catch(NumberFormatException e ){
+                javax.swing.JOptionPane.showMessageDialog(this, " por favor ingresa valores numericos validos","Error de formato",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+    }//GEN-LAST:event_btnEvaluarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,8 +190,8 @@ public class CalculadoraGui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblResultado;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtnota1;
     private javax.swing.JTextField txtnota2;
