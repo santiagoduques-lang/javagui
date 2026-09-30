@@ -49,6 +49,15 @@ public class Estudiante {
         return resultado;
     }
     
+    public String obtenerResultado (){
+        if(resultado>= 3.0){
+            String estado= "Aprobado";
+            return estado;
+        }else {
+            String estado= "No aprobado";
+            return estado;
+        }
+    }
     
     
 
