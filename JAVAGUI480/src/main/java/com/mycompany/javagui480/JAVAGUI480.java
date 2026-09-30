@@ -11,6 +11,6 @@ package com.mycompany.javagui480;
 public class JAVAGUI480 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Segundo commit!");
     }
 }
